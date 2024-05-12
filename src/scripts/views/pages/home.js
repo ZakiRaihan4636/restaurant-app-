@@ -8,20 +8,20 @@ const Home = {
   async render() {
     return `
       <section class="hero">
-      <picture>
-        <source media="(min-width: 600px)" srcset="./images/hero-image-small.jpg" />
-        <img class="hero-image" src="./images/hero-image-large.jpg" alt="test" />
-      </picture>
+        <picture>
+          <source media="(min-width: 600px)" srcset="./images/hero-image-small.jpg" />
+          <img class="hero-img lazyload" src="./images/hero-image-large.jpg" aria-hidden="true" alt="Hero Image" />
+        </picture>
       <div tabindex="0" class="hero__tagline">
         <h1 class="hero__title">Explore Culinary Delights with <span class="spotlight">Kulinera</span></h1>
         <p class="hero__subtitle">Discover Popular Nearby Restaurants</p>
       </div>
-      </section>
-      <div class="container">
-        <h2 tabindex="0" class="title">Explore Restaurant</h2>
-        <section id="catalogs"></section>
-        ${createLoaderTemplate.show()}
-      </div>
+    </section>
+    <div class="container">
+      <h2 tabindex="0" class="title">Explore Restaurant</h2>
+      <section id="catalogs"></section>
+      ${createLoaderTemplate.show()}
+    </div>
     `;
   },
 

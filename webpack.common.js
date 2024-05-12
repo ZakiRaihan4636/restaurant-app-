@@ -7,7 +7,8 @@ const {
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-
+const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
@@ -16,6 +17,29 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
   },
   module: {
     rules: [{
@@ -39,14 +63,13 @@ module.exports = {
         from: path.resolve(__dirname, 'src/public/'),
         to: path.resolve(__dirname, 'dist/'),
         globOptions: {
-          // ignore: ['**/images/**'],
+          ignore: ['**/images/**'],
         },
       }],
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: './sw.bundle.js',
-      runtimeCaching: [
-        {
+      runtimeCaching: [{
           urlPattern: ({
             url,
           }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list'),
@@ -75,5 +98,16 @@ module.exports = {
         }),
       ],
     }),
+
+    new ImageminWebpWebpackPlugin({
+      config: [{
+        test: /\.(jpg|png)/,
+        options: {
+          quality: 50,
+        },
+      }],
+      overrideExtension: true,
+    }),
+    new BundleAnalyzerPlugin(),
   ],
 };

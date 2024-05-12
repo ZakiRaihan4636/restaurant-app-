@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 async function resizeImages() {
-	const sourceDir = path.resolve(__dirname, 'src/public/images');
-	const destinationDir = path.resolve(__dirname, 'dist/images');
+	const sourceDir = path.resolve(__dirname, 'src/public/images/');
+	const destinationDir = path.resolve(__dirname, 'dist/images/');
 
 	// Create destination directory if it doesn't exist
 	if (!fs.existsSync(destinationDir)) {

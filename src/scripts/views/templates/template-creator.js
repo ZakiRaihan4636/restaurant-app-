@@ -8,18 +8,18 @@ const createRestoItemTemplate = (restaurant) => `
       </div>
         <picture>
           <source class="lazyload" media="(max-width: 600px)" srcset="${CONFIG.BASE_IMAGE_URL_SM + restaurant.pictureId}">
-          <img class="image" src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
+          <img class="image lazyload skeleton" src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
         </picture>
       </div>
       <div class="card-body">
-      <div class="rating">
+      <div class="rating ">
       <i class="fas fa-star"></i>
       <span tabindex="0">${restaurant.rating}</span>
       </div>
       <h3 class="card-title">
-        <a class="cta-restaurant" tabindex="0" href="/#/detail/${restaurant.id}">${restaurant.name}</a>
+        <a class="cta-restaurant sekeleton skeleton-title" tabindex="0" href="/#/detail/${restaurant.id}">${restaurant.name}</a>
       </h3>
-      <p tabindex="0" class="card-text">${restaurant.description.substring(0, 200)}...</p>
+      <p tabindex="0" class="card-tex">${restaurant.description.substring(0, 200)}...</p>
     </div>
   </div>
 `;
@@ -60,7 +60,7 @@ const reviewContumer = (restaurant) => {
 
 const createRestoDetailTemplate = (restaurant) => `
   <div class="detail__image">
-  <img tabindex="0" class="restaurant-img" height="100%" width="100%" src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
+  <img class="lazyload" tabindex="0" class="restaurant-img" height="100%" width="100%" src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
   </div>
   <div class="detail__restaurant">
     <span tabindex="0" class="name__detail">${restaurant.name}</span>
