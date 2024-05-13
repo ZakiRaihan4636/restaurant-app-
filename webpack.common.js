@@ -8,7 +8,8 @@ const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
@@ -31,15 +32,15 @@ module.exports = {
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10,
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
+          reuseExistingChunk: true,
+        },
+      },
+    },
   },
   module: {
     rules: [{
@@ -69,13 +70,23 @@ module.exports = {
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: './sw.bundle.js',
-      runtimeCaching: [{
+      runtimeCaching: [
+        {
           urlPattern: ({
             url,
-          }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list'),
+          }) => url.href.startsWith('https://restaurant-api.dicoding.dev'),
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'restaurantdb-api',
+          },
+        },
+        {
+          urlPattern: ({
+            url,
+          }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list/'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurantdb-api-detail',
           },
         },
         {
@@ -85,6 +96,33 @@ module.exports = {
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName: 'restaurant-image-api',
+          },
+        },
+        {
+          urlPattern: ({
+            url,
+          }) => url.href.startsWith('https://restaurant-api.dicoding.dev/images/small/'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'restaurant-image-api',
+          },
+        },
+        {
+          urlPattern: ({
+            url,
+          }) => url.href.startsWith('https://use.fontawesome.com/b070c8f1df.css'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'fontawesome-bundle',
+          },
+        },
+        {
+          urlPattern: ({
+            url,
+          }) => url.href.startsWith('https://use.fontawesome.com/b070c8f1df.js'),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'fontawesome-bundle',
           },
         },
       ],
@@ -101,7 +139,7 @@ module.exports = {
 
     new ImageminWebpWebpackPlugin({
       config: [{
-        test: /\.(jpg|png)/,
+        test: /\.(jpe?g|png)/,
         options: {
           quality: 50,
         },

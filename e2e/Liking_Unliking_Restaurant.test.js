@@ -52,50 +52,50 @@ Scenario('liking one restaurant', async ({
   I.seeElement('.cta-restaurant');
 });
 
-// Scenario('unliking one restaurant', async ({
-//   I,
-// }) => {
-//   I.see('Your favorites list is empty. Start adding your favorite items now!', '.no-data');
-//   I.amOnPage('/');
-//   I.waitForElement('.cta-restaurant', 10);
+Scenario('unliking one restaurant', async ({
+  I,
+}) => {
+  I.see('Your favorites list is empty. Start adding your favorite items now!', '.no-data');
+  I.amOnPage('/');
+  I.waitForElement('.cta-restaurant', 10);
 
-//   I.seeElement('.cta-restaurant');
+  I.seeElement('.cta-restaurant');
 
-//   const firstResto = locate('.cta-restaurant').first();
-//   const firstRestoName = await I.grabTextFrom(firstResto);
+  const firstResto = locate('.cta-restaurant').first();
+  const firstRestoName = await I.grabTextFrom(firstResto);
 
-//   I.click(firstResto);
+  I.click(firstResto);
 
-//   I.waitForElement('#likeButton', 5);
+  I.waitForElement('#likeButton', 5);
 
-//   I.seeElement('#likeButton');
+  I.seeElement('#likeButton');
 
-//   I.click('#likeButton');
+  I.click('#likeButton');
 
-//   I.amOnPage('#/favorite');
+  I.amOnPage('#/favorite');
 
-//   I.waitForElement('#catalogs', 10);
+  I.waitForElement('#catalogs', 10);
 
-//   I.seeElement('#catalogs');
+  I.seeElement('#catalogs');
 
-//   const likedRestoName = await I.grabTextFrom('.cta-restaurant');
+  const likedRestoName = await I.grabTextFrom('.cta-restaurant');
 
-//   assert.strictEqual(firstRestoName, likedRestoName);
+  assert.strictEqual(firstRestoName, likedRestoName);
 
-//   I.click('.cta-restaurant');
+  I.click('.cta-restaurant');
 
-//   I.waitForElement('#likeButton', 5);
+  I.waitForElement('#likeButton', 5);
 
-//   I.seeElement('#likeButton');
+  I.seeElement('#likeButton');
 
-//   I.click('#likeButton');
+  I.click('#likeButton');
 
-//   I.saveScreenshot('unliking_one_restaurant.success.png');
+  I.saveScreenshot('unliking_one_restaurant.success.png');
 
-//   I.amOnPage('#/favorite');
+  I.amOnPage('#/favorite');
 
-//   I.waitForElement('#catalogs', 5);
-//   I.seeElement('#catalogs');
+  I.waitForElement('#catalogs', 5);
+  I.seeElement('#catalogs');
 
-//   I.see('Your favorites list is empty. Start adding your favorite items now!', '.no-data');
-// });
+  I.see('Your favorites list is empty. Start adding your favorite items now!', '.no-data');
+});

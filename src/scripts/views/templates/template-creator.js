@@ -7,14 +7,18 @@ const createRestoItemTemplate = (restaurant) => `
       <h3 tabindex="0" class="city-label-text">${restaurant.city}</h3>
       </div>
         <picture>
-          <source class="lazyload" media="(max-width: 600px)" srcset="${CONFIG.BASE_IMAGE_URL_SM + restaurant.pictureId}">
-          <img class="image lazyload skeleton" src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
+          <source class="lazyload" media="(max-width: 600px)" data-srcset="${CONFIG.BASE_IMAGE_URL_SM + restaurant.pictureId}">
+          <img class="image lazyload skeleton" data-src="${CONFIG.BASE_IMAGE_URL_MD + restaurant.pictureId}" alt="${restaurant.name}">
         </picture>
       </div>
       <div class="card-body">
-      <div class="rating ">
-      <i class="fas fa-star"></i>
-      <span tabindex="0">${restaurant.rating}</span>
+        <div class="rating">
+        <i class="fas fa-star"></i> 
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+        <span tabindex="0">${restaurant.rating}</span>
       </div>
       <h3 class="card-title">
         <a class="cta-restaurant sekeleton skeleton-title" tabindex="0" href="/#/detail/${restaurant.id}">${restaurant.name}</a>

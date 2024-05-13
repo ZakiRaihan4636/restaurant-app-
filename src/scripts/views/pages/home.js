@@ -7,10 +7,10 @@ import {
 const Home = {
   async render() {
     return `
-      <section class="hero">
+    <section class="hero">
         <picture>
-          <source media="(min-width: 600px)" srcset="./images/hero-image-small.jpg" />
-          <img class="hero-img lazyload" src="./images/hero-image-large.jpg" aria-hidden="true" alt="Hero Image" />
+          <source media="(max-width: 600px)" srcset="./images/hero-image-small.jpg"/>
+          <img class="hero-img"  src="./images/hero-image-large.jpg"  alt="Hero Image"/>
         </picture>
       <div tabindex="0" class="hero__tagline">
         <h1 class="hero__title">Explore Culinary Delights with <span class="spotlight">Kulinera</span></h1>
