@@ -40,7 +40,7 @@
     "jest-mock": "^29.7.0",
     "playwright": "^1.44.0",
     "sass-loader": "^14.2.1",
-    "sharp": "^0.33.3",
+    "sharp": "^0.33.4",
     "style-loader": "^3.3.4",
     "webpack": "^5.88.2",
     "webpack-bundle-analyzer": "^4.10.2",
